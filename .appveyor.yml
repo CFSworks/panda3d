@@ -10,7 +10,7 @@ install:
 - appveyor DownloadFile http://rdb.name/thirdparty-vc14-x64.7z
 - 7z x thirdparty-vc14-x64.7z
 
-- C:\mingw\msys\1.0\bin\patch.exe -p1 %APPVEYOR_BUILD_FOLDER%\temp\0001-Patch-CMake-config-files.patch
+- C:\mingw\msys\1.0\bin\patch.exe -p1 < %APPVEYOR_BUILD_FOLDER%\temp\0001-Patch-CMake-config-files.patch
 - cd %APPVEYOR_BUILD_FOLDER%
 
 build_script:
