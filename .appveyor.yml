@@ -1,0 +1,26 @@
+version: build_{build}
+build:
+  verbosity: minimal
+
+image: Visual Studio 2015
+
+install:
+- mkdir ../thirdparty
+- cd ../thirdparty
+- appveyor DownloadFile http://rdb.name/thirdparty-vc14-x64.7z
+- 7z x thirdparty-vc14-x64.7z
+- C:\cygwin\usr\bin\patch.exe -p1 %APPVEYOR_BUILD_FOLDER%\temp\0001-Patch-CMake-config-files.patch
+- cd %APPVEYOR_BUILD_FOLDER%
+
+build_script:
+- mkdir build
+- cd build
+- >
+        cmake -G"Visual Studio 14 2015 Win64"
+        -DCMAKE_BUILD_TYPE=Release
+        -DJPEG_LIBRARY=..\..\thirdparty\win-libs-vc14-x64\jpeg\lib\jpeg-static.lib
+        -DPYTHON_LIBRARY=..\..\thirdparty\win-python3.6-x64\libs\python36.lib
+        -DPNG_LIBRARY=..\..\thirdparty\win-libs-vc14-x64\png\lib\libpng16_static.lib
+        -DZLIB_LIBRARY=..\..\thirdparty\win-libs-vc14-x64\zlib\lib\zlibstatic.lib
+        ..
+- msbuild /p:Configuration=Release ALL_BUILD.vcxproj
