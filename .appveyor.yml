@@ -20,7 +20,6 @@ build_script:
         cmake -G"Visual Studio 14 2015 Win64"
         -DCMAKE_BUILD_TYPE=Release
         -DJPEG_LIBRARY=..\..\thirdparty\win-libs-vc14-x64\jpeg\lib\jpeg-static.lib
-        -DPYTHON_LIBRARY=..\..\thirdparty\win-python3.6-x64\libs\python36.lib
         -DPNG_LIBRARY=..\..\thirdparty\win-libs-vc14-x64\png\lib\libpng16_static.lib
         -DZLIB_LIBRARY=..\..\thirdparty\win-libs-vc14-x64\zlib\lib\zlibstatic.lib
         ..
