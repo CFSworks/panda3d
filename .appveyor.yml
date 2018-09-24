@@ -16,9 +16,12 @@ install:
 build_script:
 - mkdir build
 - cd build
-- >
+- ps: >
+        $libs_prefix=(Get-ChildItem -Attributes Directory ..\..\thirdparty\win-libs-vc14-x64).fullname -join ";"
+
         cmake -G"Visual Studio 14 2015 Win64"
         -DCMAKE_BUILD_TYPE=Release
+        -DCMAKE_PREFIX_PATH="$libs_prefix"
         -DJPEG_LIBRARY=..\..\thirdparty\win-libs-vc14-x64\jpeg\lib\jpeg-static.lib
         -DPNG_LIBRARY=..\..\thirdparty\win-libs-vc14-x64\png\lib\libpng16_static.lib
         -DZLIB_LIBRARY=..\..\thirdparty\win-libs-vc14-x64\zlib\lib\zlibstatic.lib
