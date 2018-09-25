@@ -28,4 +28,4 @@ build_script:
         -DPNG_LIBRARY=%thirdparty_path%\win-libs-vc14-x64\png\lib\libpng16_static.lib
         -DZLIB_LIBRARY=%thirdparty_path%\win-libs-vc14-x64\zlib\lib\zlibstatic.lib
         ..
-- msbuild /p:Configuration=Release ALL_BUILD.vcxproj
+- msbuild /p:Configuration=Release /m ALL_BUILD.vcxproj
