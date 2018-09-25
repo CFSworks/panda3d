@@ -9,12 +9,14 @@ environment:
   # Python 3.6 (both compilers)
   - MSBUILD_TOOLSET: LLVM-vs2014
     PYTHON_VERSION: 36
+    EXTRA_FLAGS: "-DBT_NO_SIMD_OPERATOR_OVERLOADS"
   - MSBUILD_TOOLSET: v140
     PYTHON_VERSION: 36
 
   # Python 2.7 (both compilers)
   - MSBUILD_TOOLSET: LLVM-vs2014
     PYTHON_VERSION: 27
+    EXTRA_FLAGS: "-DBT_NO_SIMD_OPERATOR_OVERLOADS"
   - MSBUILD_TOOLSET: v140
     PYTHON_VERSION: 27
 
@@ -36,6 +38,8 @@ build_script:
 - cmd: >
         cmake -G"Visual Studio 14 2015 Win64" -T %MSBUILD_TOOLSET%
         -DCMAKE_BUILD_TYPE=Release
+        -DCMAKE_C_FLAGS="%EXTRA_FLAGS%"
+        -DCMAKE_CXX_FLAGS="%EXTRA_FLAGS%"
         -DCMAKE_PREFIX_PATH="%libs_prefix%;C:\Python%PYTHON_VERSION%-x64"
         -DJPEG_LIBRARY=%thirdparty_path%\win-libs-vc14-x64\jpeg\lib\jpeg-static.lib
         -DPNG_LIBRARY=%thirdparty_path%\win-libs-vc14-x64\png\lib\libpng16_static.lib
