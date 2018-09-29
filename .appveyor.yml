@@ -7,14 +7,14 @@ image: Visual Studio 2015
 environment:
   matrix:
   # Python 3.6 (both compilers)
-  - MSBUILD_TOOLSET: LLVM-vs2014
+  - MSBUILD_TOOLSET: llvm
     PYTHON_VERSION: 36
     EXTRA_FLAGS: "-DBT_NO_SIMD_OPERATOR_OVERLOADS"
   - MSBUILD_TOOLSET: v140
     PYTHON_VERSION: 36
 
   # Python 2.7 (both compilers)
-  - MSBUILD_TOOLSET: LLVM-vs2014
+  - MSBUILD_TOOLSET: llvm
     PYTHON_VERSION: 27
     EXTRA_FLAGS: "-DBT_NO_SIMD_OPERATOR_OVERLOADS"
   - MSBUILD_TOOLSET: v140
