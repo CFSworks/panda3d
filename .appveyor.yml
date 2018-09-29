@@ -8,17 +8,17 @@ environment:
   matrix:
   # Python 3.6 (both compilers)
   - MSBUILD_TOOLSET: llvm
-    PYTHON_VERSION: 36
+    PYTHON_VERSION: 36-x64
     EXTRA_FLAGS: "-DBT_NO_SIMD_OPERATOR_OVERLOADS"
   - MSBUILD_TOOLSET: v140
-    PYTHON_VERSION: 36
+    PYTHON_VERSION: 36-x64
 
   # Python 2.7 (both compilers)
   - MSBUILD_TOOLSET: llvm
-    PYTHON_VERSION: 27
+    PYTHON_VERSION: 27-x64
     EXTRA_FLAGS: "-DBT_NO_SIMD_OPERATOR_OVERLOADS"
   - MSBUILD_TOOLSET: v140
-    PYTHON_VERSION: 27
+    PYTHON_VERSION: 27-x64
 
 install:
 - mkdir ..\thirdparty
@@ -40,7 +40,7 @@ build_script:
         -DCMAKE_BUILD_TYPE=Release
         -DCMAKE_C_FLAGS="%EXTRA_FLAGS%"
         -DCMAKE_CXX_FLAGS="%EXTRA_FLAGS%"
-        -DCMAKE_PREFIX_PATH="%libs_prefix%;C:\Python%PYTHON_VERSION%-x64"
+        -DCMAKE_PREFIX_PATH="%libs_prefix%;C:\Python%PYTHON_VERSION%"
         -DJPEG_LIBRARY=%thirdparty_path%\win-libs-vc14-x64\jpeg\lib\jpeg-static.lib
         -DPNG_LIBRARY=%thirdparty_path%\win-libs-vc14-x64\png\lib\libpng16_static.lib
         -DZLIB_LIBRARY=%thirdparty_path%\win-libs-vc14-x64\zlib\lib\zlibstatic.lib
@@ -49,6 +49,7 @@ build_script:
 
 before_test:
 - ps: $env:PATH=$env:PATH+";"+((Get-ChildItem ..\..\thirdparty\win-libs-vc14-x64\*\bin).fullname -join ";")
+- cmd: C:\Python%PYTHON_VERSION%\python -m pip install pytest
 
 test_script:
-- ctest
+- ctest -VV
