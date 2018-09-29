@@ -46,3 +46,9 @@ build_script:
         -DZLIB_LIBRARY=%thirdparty_path%\win-libs-vc14-x64\zlib\lib\zlibstatic.lib
         ..
 - msbuild /p:Configuration=Release /m ALL_BUILD.vcxproj
+
+before_test:
+- ps: $env:PATH=$env:PATH+";"+((Get-ChildItem ..\..\thirdparty\win-libs-vc14-x64\*\bin).fullname -join ";")
+
+test_script:
+- ctest
