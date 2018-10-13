@@ -5,30 +5,54 @@
 set(WANT_PYTHON_VERSION ""
   CACHE STRING "Which Python version to seek out for building Panda3D against.")
 
-find_package(PythonInterp ${WANT_PYTHON_VERSION} QUIET)
-find_package(PythonLibs ${PYTHON_VERSION_STRING} QUIET)
-if(PYTHONINTERP_FOUND AND PYTHONLIBS_FOUND)
+find_package(Python ${WANT_PYTHON_VERSION} QUIET COMPONENTS Interpreter Development)
+
+if(Python_FOUND)
   set(PYTHON_FOUND ON)
+  set(PYTHON_EXECUTABLE ${Python_EXECUTABLE})
+  set(PYTHON_INCLUDE_DIRS ${Python_INCLUDE_DIRS})
+  set(PYTHON_VERSION_STRING ${Python_VERSION})
 else()
-  set(PYTHON_FOUND OFF)
+  find_package(PythonInterp ${WANT_PYTHON_VERSION} QUIET)
+  find_package(PythonLibs ${PYTHON_VERSION_STRING} QUIET)
+
+  if(PYTHONLIBS_FOUND)
+    set(PYTHON_FOUND ON)
+
+    if(NOT PYTHON_VERSION_STRING)
+      set(PYTHON_VERSION_STRING ${PYTHONLIBS_VERSION_STRING})
+    endif()
+  endif()
 endif()
 
-package_option(PYTHON DEFAULT ON
+package_option(PYTHON
+  DEFAULT ON
   "Enables support for Python.  If INTERROGATE_PYTHON_INTERFACE
-is also enabled, Python bindings will be generated.")
+is also enabled, Python bindings will be generated."
+  IMPORTED_AS Python::Python)
 
 # Also detect the optimal install paths:
 if(HAVE_PYTHON)
-  execute_process(
-    COMMAND ${PYTHON_EXECUTABLE}
-      -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(False))"
-    OUTPUT_VARIABLE _LIB_DIR
-    OUTPUT_STRIP_TRAILING_WHITESPACE)
-  execute_process(
-    COMMAND ${PYTHON_EXECUTABLE}
-      -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(True))"
-    OUTPUT_VARIABLE _ARCH_DIR
-    OUTPUT_STRIP_TRAILING_WHITESPACE)
+  if(WIN32 AND NOT CYGWIN)
+    set(_LIB_DIR ".")
+    set(_ARCH_DIR ".")
+  elseif(PYTHON_EXECUTABLE)
+    execute_process(
+      COMMAND ${PYTHON_EXECUTABLE}
+        -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(False))"
+      OUTPUT_VARIABLE _LIB_DIR
+      OUTPUT_STRIP_TRAILING_WHITESPACE)
+    execute_process(
+      COMMAND ${PYTHON_EXECUTABLE}
+        -c "from distutils.sysconfig import get_python_lib; print(get_python_lib(True))"
+      OUTPUT_VARIABLE _ARCH_DIR
+      OUTPUT_STRIP_TRAILING_WHITESPACE)
+  else()
+    set(_LIB_DIR "")
+    set(_ARCH_DIR "")
+  endif()
+
+
   execute_process(
     COMMAND ${PYTHON_EXECUTABLE}
       -c "from sysconfig import get_config_var as g; print((g('EXT_SUFFIX') or g('SO'))[:])"
