@@ -2,19 +2,19 @@ version: build_{build}
 build:
   verbosity: minimal
 
-image: Visual Studio 2015
+image: Previous Visual Studio 2015
 
 environment:
   matrix:
   # Python 3.6 (both compilers)
-  - MSBUILD_TOOLSET: llvm
+  - MSBUILD_TOOLSET: LLVM-vs2014
     PYTHON_VERSION: 36-x64
     EXTRA_FLAGS: "-DBT_NO_SIMD_OPERATOR_OVERLOADS"
   - MSBUILD_TOOLSET: v140
     PYTHON_VERSION: 36-x64
 
   # Python 2.7 (both compilers)
-  - MSBUILD_TOOLSET: llvm
+  - MSBUILD_TOOLSET: LLVM-vs2014
     PYTHON_VERSION: 27-x64
     EXTRA_FLAGS: "-DBT_NO_SIMD_OPERATOR_OVERLOADS"
   - MSBUILD_TOOLSET: v140
