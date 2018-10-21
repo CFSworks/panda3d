@@ -78,6 +78,9 @@ install:
 before_script:
 - mkdir built
 - cd built
+# If we're working with Clang, do coverage
+- "[[ ! $CC =~ .*clang.* ]] || export CXXFLAGS='-fprofile-instr-generate -fcoverage-mapping'"
+- export LLVM_PROFILE_FILE=/tmp/llvm_profile/profile-%p.profraw
 
 script:
 # This is kind of a hack, but needed to test non-metalib builds (until
@@ -104,6 +107,22 @@ script:
 - export PYTHONPATH=$PWD
 - python ../test_imports.py
 - pytest -v ../tests
+
+after_success:
+# Merge profraw files
+- >
+  if [ -e /tmp/llvm_profile ]; then
+    [[ "$TRAVIS_OS_NAME" != "osx" ]] || XCRUN=xcrun
+
+    $XCRUN llvm-profdata merge -sparse /tmp/llvm_profile/profile-*.profraw \
+        -o coverage.profdata
+
+    $XCRUN llvm-cov show \
+        $(find lib -type f -perm -u+x | awk '{print "-object " $0}') \
+        -instr-profile=coverage.profdata > coverage.txt
+
+    bash <(curl -s https://codecov.io/bash)
+  fi
 
 notifications:
   irc:
