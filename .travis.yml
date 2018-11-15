@@ -6,7 +6,7 @@ os:
 - windows
 compiler:
 - clang
-- msvc
+- cl
 env:
 - BUILD_METALIBS=ON COMPOSITE_SOURCE_LIMIT=30
 - BUILD_METALIBS=ON COMPOSITE_SOURCE_LIMIT=30 PYTHON_INTERP=python2.7
@@ -19,7 +19,7 @@ before_install:
 - makepanda/selfdestruct.py --yes
 
 install:
-- virtualenv --python=${PYTHON_INTERP:-python3} venv
+- ${PYTHON_INTERP:-python3} -m virtualenv venv
 - source venv/bin/activate
 - pip install pytest
 
