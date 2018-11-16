@@ -1,0 +1,2 @@
+fixes:
+ - "/home/travis/build/CFSworks/panda3d/::" # reduce root
