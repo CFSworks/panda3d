@@ -21,6 +21,9 @@
 /* Define if we have Freetype 2.0 or better available. */
 #cmakedefine HAVE_FREETYPE
 
+/* Define if we have HarfBuzz available. */
+#cmakedefine HAVE_HARFBUZZ
+
 /* Define if we want to compile in a default font. */
 #cmakedefine COMPILE_IN_DEFAULT_FONT
 
@@ -63,6 +66,9 @@
 
 /* Define if we have libtiff installed.  */
 #cmakedefine HAVE_TIFF
+
+/* Define if we have OpenEXR installed.  */
+#cmakedefine HAVE_OPENEXR
 
 /* Define if we want to build these other image file formats. */
 #cmakedefine HAVE_SGI_RGB

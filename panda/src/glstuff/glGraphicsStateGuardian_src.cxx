@@ -68,7 +68,7 @@
 #include "displayInformation.h"
 
 #if defined(HAVE_CG) && !defined(OPENGLES)
-#include "Cg/cgGL.h"
+#include <Cg/cgGL.h>
 #endif
 
 #include <algorithm>
@@ -8925,6 +8925,9 @@ get_panda_wrap_mode(GLenum wm) {
   case GL_REPEAT:
     return SamplerState::WM_repeat;
 
+  case GL_MIRRORED_REPEAT:
+    return SamplerState::WM_mirror;
+
 #ifndef OPENGLES
   case GL_MIRROR_CLAMP_EXT:
   case GL_MIRROR_CLAMP_TO_EDGE_EXT:
@@ -11756,8 +11759,6 @@ do_issue_tex_gen() {
 
   _tex_gen_modifies_mat = false;
 
-  bool got_point_sprites = false;
-
   for (int i = 0; i < _num_active_texture_stages; i++) {
     set_active_texture_stage(i);
     if (_supports_point_sprite) {
@@ -11950,7 +11951,6 @@ do_issue_tex_gen() {
 #else
         glTexEnvi(GL_POINT_SPRITE_ARB, GL_COORD_REPLACE_ARB, GL_TRUE);
 #endif
-        got_point_sprites = true;
       }
       break;
 
@@ -11987,6 +11987,9 @@ do_issue_tex_gen() {
     }
 #endif  // OPENGLES
   }
+
+  bool got_point_sprites = _supports_point_sprite &&
+    (_target_tex_gen->get_geom_rendering(Geom::GR_point) & GeomEnums::GR_point_sprite) != 0;
 
   if (got_point_sprites != _tex_gen_point_sprite) {
     _tex_gen_point_sprite = got_point_sprites;
