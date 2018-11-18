@@ -18,7 +18,7 @@ before_install:
 - makepanda/selfdestruct.py --yes
 
 install:
-- python -m easy_install virtualenv
+- python -m pip install virtualenv
 - python -m virtualenv venv
 - source venv/bin/activate
 - pip install pytest
