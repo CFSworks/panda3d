@@ -20,10 +20,10 @@ before_install:
 - cinst -y python
 
 install:
-- python -c 'print(__import__("sys").version)' || true
-- python -m pip install virtualenv || true
-- python -m easy_install virtualenv || true
-- python -m virtualenv venv
+- /c/Python37/python -c 'print(__import__("sys").version)' || true
+- /c/Python37/python -m pip install virtualenv || true
+- /c/Python37/python -m easy_install virtualenv || true
+- /c/Python37/python -m virtualenv venv
 - source venv/bin/activate
 - pip install pytest
 
