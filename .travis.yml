@@ -20,7 +20,7 @@ before_install:
 
 install:
 - echo 'import sys; print(sys.executable); print(sys.version);' > info.py
-- info.py
+- ./info.py
 - /c/ProgramData/chocolatey/bin/python.exe -m virtualenv venv
 - source venv/bin/activate
 - pip install pytest
