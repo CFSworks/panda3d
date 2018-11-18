@@ -16,12 +16,14 @@ before_install:
 # clean up remnants of makepanda
 - mv makepanda/test_imports.py .
 - makepanda/selfdestruct.py --yes
+# take care of installing Python
+- cinst -y python
 
 install:
-- /c/ProgramData/chocolatey/bin/python.exe -c 'print(__import__("sys").version)' || true
-- /c/ProgramData/chocolatey/bin/python.exe -m pip install venv || true
-- /c/ProgramData/chocolatey/bin/python.exe -m easy_install virtualenv || true
-- /c/ProgramData/chocolatey/bin/python.exe -m virtualenv venv
+- python -c 'print(__import__("sys").version)' || true
+- python -m pip install virtualenv || true
+- python -m easy_install virtualenv || true
+- python -m virtualenv venv
 - source venv/bin/activate
 - pip install pytest
 
