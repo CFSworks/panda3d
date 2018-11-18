@@ -9,7 +9,7 @@ compiler:
 - cl
 env:
 - BUILD_METALIBS=ON COMPOSITE_SOURCE_LIMIT=30
-- BUILD_METALIBS=ON COMPOSITE_SOURCE_LIMIT=30 PYTHON_INTERP=python27
+- BUILD_METALIBS=ON COMPOSITE_SOURCE_LIMIT=30 PYTHON_INTERP=Python27
 - BUILD_METALIBS=OFF COMPOSITE_SOURCE_LIMIT=30
 - BUILD_METALIBS=ON COMPOSITE_SOURCE_LIMIT=0
 
@@ -19,7 +19,7 @@ before_install:
 - makepanda/selfdestruct.py --yes
 
 install:
-- /c/${PYTHON_INTERP:-python37}/python -m virtualenv venv
+- /c/${PYTHON_INTERP:-Python37}/python -m virtualenv venv
 - source venv/bin/activate
 - pip install pytest
 
