@@ -19,6 +19,10 @@ before_install:
 - makepanda/selfdestruct.py --yes
 
 install:
+- ls / || true
+- ls /c/ || true
+- ls /c/${PYTHON_INTERP:-Python37} || true
+- ls /${PYTHON_INTERP:-Python37} || true
 - /c/${PYTHON_INTERP:-Python37}/python -m virtualenv venv
 - source venv/bin/activate
 - pip install pytest
