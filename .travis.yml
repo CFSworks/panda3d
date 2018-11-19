@@ -119,7 +119,7 @@ after_success:
 
     $XCRUN llvm-cov show \
         $(find lib -type f -perm -u+x | awk '{print "-object " $0}') \
-        -instr-profile=coverage.profdata > coverage.txt
+        -instr-profile=coverage.profdata > app.coverage.txt
 
     bash <(curl -s https://codecov.io/bash)
   fi
