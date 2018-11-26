@@ -13,9 +13,6 @@ env:
 - BUILD_METALIBS=ON COMPOSITE_SOURCE_LIMIT=0
 
 before_install:
-# clean up remnants of makepanda
-- mv makepanda/test_imports.py .
-- makepanda/selfdestruct.py --yes
 # take care of installing Python
 - cinst -y python
 # create venv
@@ -24,18 +21,31 @@ before_install:
 
 install:
 - pip install pytest
+# get rdb's thirdparty archive
+- mkdir -p ../thirdparty
+- pushd ../thirdparty
+- wget http://rdb.name/thirdparty-vc14-x64.7z
+- 7z x thirdparty-vc14-x64.7z
+- popd
+# clean up remnants of makepanda
+- mv makepanda/test_imports.py .
+- makepanda/selfdestruct.py --yes
 
-before_script:
+script:
 - mkdir built
 - cd built
 
-script:
-- >
-    cmake -G'Visual Studio 15 2017' -DBUILD_METALIBS=$BUILD_METALIBS \
-    -DCOMPOSITE_SOURCE_EXCLUSIONS="$COMPOSITE_SOURCE_EXCLUSIONS" \
+- libs_path=$(realpath ../../thirdparty/win-libs-vc14-x64)
+- libs_prefixes=$(echo ${libs_path}/* | tr ' ' ';')
+- cmake -G'Visual Studio 15 2017' -DCMAKE_BUILD_TYPE=Debug
+    -DCMAKE_PREFIX_PATH="$libs_prefixes"
+    -DJPEG_LIBRARY="$libs_path/jpeg/lib/jpeg-static.lib"
+    -DPNG_LIBRARY="$libs_path/png/lib/libpng16_static.lib"
+    -DZLIB_LIBRARY="$libs_path/zlib/lib/zlibstatic.lib"
+    -DBUILD_METALIBS=$BUILD_METALIBS
+    -DCOMPOSITE_SOURCE_EXCLUSIONS="$COMPOSITE_SOURCE_EXCLUSIONS"
     -DCOMPOSITE_SOURCE_LIMIT=$COMPOSITE_SOURCE_LIMIT ..
-- cmake --build . --config Debug -- /m
+- cmake --build . --config Debug -- //m
 
-- export PYTHONPATH=$PWD
-- python ../test_imports.py
+- PYTHONPATH=$PWD python ../test_imports.py
 - pytest -v ../tests
