@@ -135,7 +135,7 @@ target_link_libraries(p3putil p3linmath p3pipeline)
 target_interrogate(p3putil ALL EXTENSIONS ${P3PUTIL_IGATEEXT})
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3putil DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3putil EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3PUTIL_HEADERS} DESTINATION include/panda3d)
 install(FILES config_util.h DESTINATION include/panda3d)

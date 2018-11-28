@@ -16,4 +16,4 @@ add_metalib(pandagles ${MODULE_TYPE}
   EXPORT int get_pipe_type_pandagles "${GLES1_PIPE_TYPE}::get_class_type().get_index()"
   COMPONENTS p3egldisplay_gles1 p3glesgsg p3glstuff p3x11display)
 
-install(TARGETS pandagles DESTINATION ${MODULE_DESTINATION})
+install(TARGETS pandagles EXPORT panda3d DESTINATION ${MODULE_DESTINATION})

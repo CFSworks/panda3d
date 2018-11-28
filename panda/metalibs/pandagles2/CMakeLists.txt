@@ -8,4 +8,4 @@ add_metalib(pandagles2 ${MODULE_TYPE}
   EXPORT int get_pipe_type_pandagles2 "eglGraphicsPipe::get_class_type().get_index()"
   COMPONENTS p3egldisplay_gles2 p3gles2gsg p3glstuff p3x11display)
 
-install(TARGETS pandagles2 DESTINATION ${MODULE_DESTINATION})
+install(TARGETS pandagles2 EXPORT panda3d DESTINATION ${MODULE_DESTINATION})

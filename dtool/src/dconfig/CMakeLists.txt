@@ -3,3 +3,4 @@
 add_library(p3dconfig INTERFACE)
 
 install(FILES dconfig.h DESTINATION include/panda3d)
+install(TARGETS p3dconfig EXPORT panda3d)

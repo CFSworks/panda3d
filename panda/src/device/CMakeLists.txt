@@ -33,6 +33,6 @@ target_link_libraries(p3device p3dgraph p3display)
 target_interrogate(p3device ALL)
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3device DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3device EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3DEVICE_HEADERS} DESTINATION include/panda3d)

@@ -46,7 +46,7 @@ target_link_libraries(p3pgui p3tform)
 target_interrogate(p3pgui ALL)
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3pgui DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3pgui EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3PGUI_HEADERS} DESTINATION include/panda3d)
 

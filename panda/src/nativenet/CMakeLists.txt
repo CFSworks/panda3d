@@ -36,6 +36,6 @@ target_link_libraries(p3nativenet p3pandabase pandaexpress)
 target_interrogate(p3nativenet ALL)
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3nativenet DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3nativenet EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3NATIVENET_HEADERS} DESTINATION include/panda3d)

@@ -91,7 +91,7 @@ if(NOT CMAKE_CROSSCOMPILING)
 endif()
 
 if(WANT_INTERROGATE)
-  install(TARGETS interrogate interrogate_module DESTINATION bin)
+  install(TARGETS interrogate interrogate_module EXPORT panda3d DESTINATION bin)
   install(FILES ${INTERROGATE_HEADERS} DESTINATION include/panda3d)
 else()
   set_target_properties(interrogate interrogate_module

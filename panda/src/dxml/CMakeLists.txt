@@ -18,6 +18,6 @@ target_link_libraries(p3dxml pandaexpress)
 target_interrogate(p3dxml ALL)
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3dxml DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3dxml EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3DXML_HEADERS} DESTINATION include/panda3d)

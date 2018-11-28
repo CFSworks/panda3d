@@ -17,7 +17,7 @@ target_link_libraries(p3gsgbase p3putil p3linmath)
 target_interrogate(p3gsgbase ALL)
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3gsgbase DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3gsgbase EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3GSGBASE_HEADERS} DESTINATION include/panda3d)
 

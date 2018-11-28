@@ -146,7 +146,7 @@ if(WIN32)
 endif()
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3express DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3express EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3EXPRESS_HEADERS} DESTINATION include/panda3d)
 

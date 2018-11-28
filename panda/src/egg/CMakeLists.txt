@@ -108,6 +108,6 @@ target_link_libraries(p3egg panda)
 target_interrogate(p3egg ${P3EGG_HEADERS} ${P3EGG_SOURCES} EXTENSIONS ${P3EGG_IGATEEXT})
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3egg DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3egg EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3EGG_HEADERS} DESTINATION include/panda3d)

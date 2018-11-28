@@ -40,5 +40,5 @@ target_link_libraries(p3pnmimagetypes p3pnmimage
 set_target_properties(p3pnmimagetypes PROPERTIES CXX_EXCEPTIONS ON)
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3pnmimagetypes DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3pnmimagetypes EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()

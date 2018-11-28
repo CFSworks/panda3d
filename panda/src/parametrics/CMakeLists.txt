@@ -40,7 +40,7 @@ target_link_libraries(p3parametrics p3pgraph)
 target_interrogate(p3parametrics ALL)
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3parametrics DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3parametrics EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3PARAMETRICS_HEADERS} DESTINATION include/panda3d)
 

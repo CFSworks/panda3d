@@ -51,7 +51,7 @@ target_link_libraries(p3event p3linmath p3pstatclient)
 target_interrogate(p3event ALL EXTENSIONS ${P3EVENT_IGATEEXT})
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3event DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3event EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3EVENT_HEADERS} DESTINATION include/panda3d)
 

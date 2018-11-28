@@ -49,6 +49,6 @@ target_link_libraries(p3movies p3pstatclient p3gobj p3pandabase pandaexpress)
 target_interrogate(p3movies ALL)
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3movies DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3movies EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3MOVIES_HEADERS} DESTINATION include/panda3d)

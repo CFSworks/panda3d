@@ -95,6 +95,6 @@ target_link_libraries(p3dtoolbase PKG::EIGEN PKG::THREADS)
 target_interrogate(p3dtoolbase ${P3DTOOLBASE_SOURCES} EXTENSIONS ${P3DTOOLBASE_IGATEEXT})
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3dtoolbase DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3dtoolbase EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3DTOOLBASE_HEADERS} DESTINATION include/panda3d)

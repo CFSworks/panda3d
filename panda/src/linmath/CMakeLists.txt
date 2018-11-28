@@ -53,7 +53,7 @@ target_link_libraries(p3linmath p3pandabase pandaexpress PKG::EIGEN)
 target_interrogate(p3linmath ALL)
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3linmath DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3linmath EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3LINMATH_HEADERS} DESTINATION include/panda3d)
 

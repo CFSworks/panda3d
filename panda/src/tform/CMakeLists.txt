@@ -34,6 +34,6 @@ target_link_libraries(p3tform p3device p3grutil)
 target_interrogate(p3tform ALL)
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3tform DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3tform EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3TFORM_HEADERS} DESTINATION include/panda3d)

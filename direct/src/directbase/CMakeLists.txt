@@ -11,3 +11,4 @@ add_library(p3directbase INTERFACE)
 target_link_libraries(p3directbase INTERFACE panda)
 
 install(FILES ${P3DIRECTBASE_HEADERS} DESTINATION include/panda3d)
+install(TARGETS p3directbase EXPORT panda3d)

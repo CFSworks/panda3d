@@ -70,7 +70,7 @@ target_link_libraries(p3collide p3tform)
 target_interrogate(p3collide ALL)
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3collide DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3collide EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3COLLIDE_HEADERS} DESTINATION include/panda3d)
 

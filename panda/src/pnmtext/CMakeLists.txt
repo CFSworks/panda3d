@@ -24,6 +24,6 @@ target_link_libraries(p3pnmtext p3parametrics p3pnmimage PKG::FREETYPE)
 target_interrogate(p3pnmtext ALL)
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3pnmtext DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3pnmtext EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3PNMTEXT_HEADERS} DESTINATION include/panda3d)
