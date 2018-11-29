@@ -25,6 +25,6 @@ target_link_libraries(p3char p3chan)
 target_interrogate(p3char ALL)
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3char DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3char EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3CHAR_HEADERS} DESTINATION include/panda3d)

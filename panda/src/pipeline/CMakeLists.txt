@@ -45,7 +45,8 @@ set(P3PIPELINE_HEADERS
   pmutex.h pmutex.I
   reMutex.I reMutex.h
   reMutexDirect.h reMutexDirect.I
-  reMutexHolder.I reMutexHolder.h
+  reMutexHolder.h reMutexHolder.I
+  reMutexSpinlockImpl.h reMutexSpinlockImpl.I
   psemaphore.h psemaphore.I
   thread.h thread.I threadImpl.h
   threadDummyImpl.h threadDummyImpl.I
@@ -97,6 +98,7 @@ set(P3PIPELINE_SOURCES
   reMutex.cxx
   reMutexDirect.cxx
   reMutexHolder.cxx
+  reMutexSpinlockImpl.cxx
   psemaphore.cxx
   thread.cxx
   threadDummyImpl.cxx
@@ -130,6 +132,6 @@ target_link_libraries(p3pipeline pandaexpress
 target_interrogate(p3pipeline ALL EXTENSIONS ${P3PIPELINE_IGATEEXT})
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3pipeline DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3pipeline EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3PIPELINE_HEADERS} DESTINATION include/panda3d)

@@ -12,6 +12,6 @@ target_link_libraries(p3motiontrail p3directbase panda)
 target_interrogate(p3motiontrail ALL)
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3motiontrail DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3motiontrail EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3MOTIONTRAIL_HEADERS} DESTINATION include/panda3d)

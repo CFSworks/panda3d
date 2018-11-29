@@ -30,7 +30,7 @@ set(P3INTERROGATEDB_IGATE
 )
 
 set(P3IGATERUNTIME_HEADERS
-  extension.h py_compat.h py_panda.h py_wrappers.h
+  extension.h py_compat.h py_panda.h py_panda.I py_wrappers.h
 )
 
 composite_sources(p3interrogatedb P3INTERROGATEDB_SOURCES)
@@ -40,7 +40,7 @@ add_component_library(p3interrogatedb NOINIT SYMBOL BUILDING_INTERROGATEDB
 target_link_libraries(p3interrogatedb p3prc p3dconfig p3dtool)
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3interrogatedb DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3interrogatedb EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3INTERROGATEDB_HEADERS} DESTINATION include/panda3d)
 install(FILES ${P3IGATERUNTIME_HEADERS} DESTINATION include/panda3d)

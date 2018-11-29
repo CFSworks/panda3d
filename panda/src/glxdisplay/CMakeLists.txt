@@ -7,7 +7,7 @@ set(P3GLXDISPLAY_HEADERS
   glxGraphicsBuffer.h glxGraphicsBuffer.I
   glxGraphicsPipe.h glxGraphicsPipe.I
   glxGraphicsPixmap.h glxGraphicsPixmap.I
-  glxGraphicsWindow.h
+  glxGraphicsWindow.h glxGraphicsWindow.I
   glxGraphicsStateGuardian.h glxGraphicsStateGuardian.I
   posixGraphicsStateGuardian.h posixGraphicsStateGuardian.I
   panda_glxext.h
@@ -29,5 +29,5 @@ add_component_library(p3glxdisplay SYMBOL BUILDING_PANDA_GLXDISPLAY
 target_link_libraries(p3glxdisplay p3glgsg p3x11display)
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3glxdisplay DESTINATION lib)
+  install(TARGETS p3glxdisplay EXPORT panda3d DESTINATION lib)
 endif()

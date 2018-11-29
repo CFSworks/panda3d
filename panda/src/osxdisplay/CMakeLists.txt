@@ -4,12 +4,14 @@ endif()
 
 set(P3OSXDISPLAY_HEADERS
     config_osxdisplay.h
+    osxGraphicsBuffer.h
     osxGraphicsPipe.h
     osxGraphicsWindow.h osxGraphicsWindow.I
     osxGraphicsStateGuardian.h)
 
 set(P3OSXDISPLAY_SOURCES
-    config_osxdisplay.cxx osxGraphicsPipe.cxx osxGraphicsStateGuardian.cxx
+    config_osxdisplay.cxx
+    osxGraphicsPipe.cxx osxGraphicsStateGuardian.cxx
     osxGraphicsBuffer.cxx)
 
 composite_sources(p3osxdisplay P3OSXDISPLAY_SOURCES)
@@ -29,5 +31,5 @@ target_link_libraries(p3osxdisplay
   ${CORESERVICES_LIBRARY} ${COCOA_LIBRARY})
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3osxdisplay DESTINATION lib)
+  install(TARGETS p3osxdisplay EXPORT panda3d DESTINATION lib)
 endif()

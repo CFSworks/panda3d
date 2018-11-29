@@ -11,3 +11,4 @@ add_library(p3pandabase INTERFACE)
 target_link_libraries(p3pandabase INTERFACE p3dtool)
 
 install(FILES ${P3PANDABASE_HEADERS} DESTINATION include/panda3d)
+install(TARGETS p3pandabase EXPORT panda3d)

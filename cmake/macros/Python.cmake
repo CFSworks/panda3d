@@ -40,14 +40,14 @@ function(add_python_target target)
       SUFFIX "${PYTHON_EXTENSION_SUFFIX}")
 
     if(PYTHON_ARCH_INSTALL_DIR)
-      install(TARGETS ${target} DESTINATION "${PYTHON_ARCH_INSTALL_DIR}/${slash_namespace}")
+      install(TARGETS ${target} EXPORT panda3d DESTINATION "${PYTHON_ARCH_INSTALL_DIR}/${slash_namespace}")
     endif()
   else()
     set_target_properties(${target} PROPERTIES
       OUTPUT_NAME "${basename}"
       PREFIX "libpython_${underscore_namespace}_")
 
-    install(TARGETS ${target} DESTINATION lib)
+    install(TARGETS ${target} EXPORT panda3d DESTINATION lib)
   endif()
 
   set(keywords OVERWRITE ARCH)

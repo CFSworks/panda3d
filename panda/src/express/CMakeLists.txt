@@ -49,10 +49,12 @@ set(P3EXPRESS_HEADERS
   threadSafePointerToBase.I threadSafePointerToBase.h
   trueClock.I trueClock.h
   typedReferenceCount.I typedReferenceCount.h typedef.h
-  virtualFile.I virtualFileList.I virtualFileList.h virtualFileMount.h
-  virtualFileComposite.h virtualFileComposite.I virtualFile.h
-  virtualFileMount.I virtualFileMountMultifile.h
-  virtualFileMountMultifile.I
+  virtualFileList.I virtualFileList.h
+  virtualFileComposite.h virtualFileComposite.I
+  virtualFile.h virtualFile.I
+  virtualFileMount.h virtualFileMount.I
+  virtualFileMountAndroidAsset.h virtualFileMountAndroidAsset.I
+  virtualFileMountMultifile.h virtualFileMountMultifile.I
   virtualFileMountRamdisk.h virtualFileMountRamdisk.I
   virtualFileMountSystem.h virtualFileMountSystem.I
   virtualFileSimple.h virtualFileSimple.I
@@ -144,7 +146,7 @@ if(WIN32)
 endif()
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3express DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3express EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3EXPRESS_HEADERS} DESTINATION include/panda3d)
 

@@ -8,4 +8,4 @@ add_metalib(pandadx9 ${MODULE_TYPE}
   EXPORT int get_pipe_type_pandadx9 "wdxGraphicsPipe9::get_class_type().get_index()"
   COMPONENTS p3dxgsg9 p3windisplay)
 
-install(TARGETS pandadx9 DESTINATION ${MODULE_DESTINATION})
+install(TARGETS pandadx9 EXPORT panda3d DESTINATION ${MODULE_DESTINATION})

@@ -7,4 +7,4 @@ add_metalib(pandaegg
   COMPONENTS p3egg p3egg2pg)
 target_link_libraries(pandaegg panda)
 
-install(TARGETS pandaegg DESTINATION lib RUNTIME DESTINATION bin)
+install(TARGETS pandaegg EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)

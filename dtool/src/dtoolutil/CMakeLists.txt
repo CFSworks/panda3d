@@ -20,6 +20,7 @@ set(P3DTOOLUTIL_HEADERS
   vector_double.h
   vector_float.h
   vector_int.h
+  vector_stdfloat.h
   vector_string.h
   vector_uchar.h
   vector_src.h
@@ -80,6 +81,6 @@ if(APPLE)
 endif()
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3dtoolutil DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3dtoolutil EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3DTOOLUTIL_HEADERS} DESTINATION include/panda3d)

@@ -22,3 +22,7 @@ composite_sources(p3wgldisplay P3WGLDISPLAY_SOURCES)
 add_component_library(p3wgldisplay SYMBOL BUILDING_PANDA_WGLDISPLAY
   ${P3WGLDISPLAY_HEADERS} ${P3WGLDISPLAY_SOURCES})
 target_link_libraries(p3wgldisplay p3glgsg p3windisplay)
+
+if(NOT BUILD_METALIBS)
+  install(TARGETS p3wgldisplay EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
+endif()

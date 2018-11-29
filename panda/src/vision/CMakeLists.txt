@@ -33,5 +33,5 @@ target_link_libraries(p3vision panda
 set_target_properties(p3vision PROPERTIES CXX_EXCEPTIONS ON)
 target_interrogate(p3vision ALL)
 
-install(TARGETS p3vision DESTINATION lib RUNTIME DESTINATION bin)
+install(TARGETS p3vision EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 install(FILES ${P3VISION_HEADERS} DESTINATION include/panda3d)

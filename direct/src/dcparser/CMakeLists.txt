@@ -20,7 +20,9 @@ set(P3DCPARSER_HEADERS
      dcSwitch.h
      dcTypedef.h
      dcPython.h
-     dcbase.h dcindent.h hashGenerator.h
+     dcbase.h dcindent.h
+     dcmsgtypes.h
+     hashGenerator.h
      primeNumberGenerator.h)
 
 set(P3DCPARSER_SOURCES
@@ -53,6 +55,6 @@ target_link_libraries(p3dcparser p3directbase panda PKG::PYTHON)
 target_interrogate(p3dcparser ${P3DCPARSER_HEADERS} ${P3DCPARSER_SOURCES})
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3dcparser DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3dcparser EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3DCPARSER_HEADERS} DESTINATION include/panda3d)

@@ -17,3 +17,7 @@ composite_sources(p3windisplay P3WINDISPLAY_SOURCES)
 add_component_library(p3windisplay SYMBOL BUILDING_PANDAWIN
   ${P3WINDISPLAY_HEADERS} ${P3WINDISPLAY_SOURCES})
 target_link_libraries(p3windisplay panda User32.lib Imm32.lib)
+
+if(NOT BUILD_METALIBS)
+  install(TARGETS p3windisplay EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
+endif()

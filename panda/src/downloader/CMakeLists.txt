@@ -8,7 +8,7 @@ set(P3DOWNLOADER_HEADERS
   decompressor.h decompressor.I
   documentSpec.h documentSpec.I
   download_utils.h downloadDb.h downloadDb.I
-  extractor.h
+  extractor.h extractor.I
   httpAuthorization.I httpAuthorization.h
   httpBasicAuthorization.I httpBasicAuthorization.h
   httpChannel.I httpChannel.h
@@ -74,6 +74,6 @@ target_link_libraries(p3downloader p3express)
 target_interrogate(p3downloader ALL EXTENSIONS ${P3DOWNLOADER_IGATEEXT})
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3downloader DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3downloader EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3DOWNLOADER_HEADERS} DESTINATION include/panda3d)

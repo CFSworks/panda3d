@@ -43,6 +43,8 @@ set(P3GOBJ_HEADERS
   perspectiveLens.I perspectiveLens.h
   preparedGraphicsObjects.I preparedGraphicsObjects.h
   queryContext.I queryContext.h
+  samplerContext.h samplerContext.I
+  samplerState.h samplerState.I
   savedContext.I savedContext.h
   shader.I shader.h
   shaderBuffer.h shaderBuffer.I
@@ -175,7 +177,7 @@ target_link_libraries(p3gobj p3gsgbase p3pnmimage
 target_interrogate(p3gobj ALL EXTENSIONS ${P3GOBJ_IGATEEXT})
 
 if(NOT BUILD_METALIBS)
-  install(TARGETS p3gobj DESTINATION lib RUNTIME DESTINATION bin)
+  install(TARGETS p3gobj EXPORT panda3d DESTINATION lib RUNTIME DESTINATION bin)
 endif()
 install(FILES ${P3GOBJ_HEADERS} DESTINATION include/panda3d)
 

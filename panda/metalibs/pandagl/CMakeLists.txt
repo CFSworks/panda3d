@@ -34,4 +34,4 @@ add_metalib(pandagl ${MODULE_TYPE}
   EXPORT int get_pipe_type_pandagl "${PANDAGL_PIPE_TYPE}::get_class_type().get_index()"
   COMPONENTS ${PANDAGL_LINK_TARGETS})
 
-install(TARGETS pandagl DESTINATION ${MODULE_DESTINATION})
+install(TARGETS pandagl EXPORT panda3d DESTINATION ${MODULE_DESTINATION})

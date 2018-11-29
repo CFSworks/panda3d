@@ -192,3 +192,9 @@ except ImportError as err:
   # Now install ourselves:
   install_python_package("${PROJECT_BINARY_DIR}/pandac" LIB)
 endif()
+
+# Finally, export our installed targets
+export_packages(${PROJECT_BINARY_DIR}/Panda3DPackages.cmake)
+install(FILES ${PROJECT_BINARY_DIR}/Panda3DPackages.cmake DESTINATION lib/cmake/Panda3D)
+install(EXPORT panda3d NAMESPACE Panda3D:: FILE Panda3DTargets.cmake DESTINATION lib/cmake/Panda3D)
+export(EXPORT panda3d NAMESPACE Panda3D:: FILE Panda3DTargets.cmake)
